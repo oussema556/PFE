@@ -1,0 +1,68 @@
+<div
+  class="flex flex-col h-screen bg-gradient-to-br from-intuitivBlue-900 to-intuitivBlue-500"
+>
+  <div class="logo">
+    <img class="object-cover" src="../../../../assets/LogoLight.png" alt="" />
+  </div>
+  <div class="nav">
+    <a class="sideBarLink"  [routerLink]="['/employee/admin/viewProfile',userSession.id]"> <!--[routerLink]='[userSession.id]'-->
+    <mat-icon matBadge="5" matBadgeColor="warn">dashboard</mat-icon>
+      <span class="sideBarLinkName">Dashboard</span>
+
+    </a>
+    <a class="sideBarLink" routerLink='employees'>
+      <mat-icon matBadge="5" matBadgeColor="warn">people</mat-icon>
+      <span class="sideBarLinkName">Emlployees</span>
+    </a>
+    <a class="sideBarLink" routerLink='requests'>
+      <mat-icon matBadge="5"  matBadgeColor="warn">confirmation_number</mat-icon>
+      <span class="sideBarLinkName">Requests</span>
+    </a>
+    <a class="sideBarLink">
+      <mat-icon matBadge="5" matBadgeColor="warn">badge</mat-icon>
+      <span class="sideBarLinkName">Recruitement</span>
+    </a>
+    <a class="sideBarLink">
+      <mat-icon matBadge="5" matBadgeColor="warn">star</mat-icon>
+      <span class="sideBarLinkName">Evaluation</span>
+    </a>
+    <a class="sideBarLink">
+      <mat-icon matBadge="5" matBadgeColor="warn">calendar_today</mat-icon>
+      <span class="sideBarLinkName">Calendar</span>
+    </a>
+    <a class="sideBarLink">
+      <mat-icon matBadge="5" matBadgeColor="warn">article</mat-icon>
+      <span class="sideBarLinkName">Docuements</span>
+    </a>
+  </div>
+  <div class="p-4">
+    <mat-expansion-panel class="mat-elevation-z0 bg-transparent w-full m-0 !shadow-none">
+      <mat-expansion-panel-header class="padd">
+        <div class="profile">
+          <img
+            class="w-12 h-12 rounded-full object-cover"
+            src="https://media.istockphoto.com/photos/portrait-of-men-looking-at-camera-picture-id1181083533?k=20&m=1181083533&s=612x612&w=0&h=JRcWzFmJhmnTPkT0MU1gGGcax-_p4eT0M_eRXWRqxgU="
+            alt=""
+          />
+
+          <div class="namePosition">
+            <h3>{{userSession?.firstName}} {{userSession?.lastName}}</h3> <!---->
+            <p>{{userSession.role}}</p>
+          </div>
+        </div>
+      </mat-expansion-panel-header>
+
+    <div class="">
+      <a href="" [routerLink]="['/employee/editProfile']" class="block text-white p-3 rounded-full font-medium hover:bg-intuitivBlue-100 hover:bg-opacity-20 transition tracking-wider">
+        <span>
+          Settings
+        </span>
+      </a>
+      <a href="" (click)="logout()" class="block text-red-500 p-3 rounded-full font-medium hover:bg-intuitivBlue-100 hover:bg-opacity-20 transition tracking-wider">
+        Logout
+      </a>
+
+    </div>
+  </mat-expansion-panel>
+  </div>
+</div>

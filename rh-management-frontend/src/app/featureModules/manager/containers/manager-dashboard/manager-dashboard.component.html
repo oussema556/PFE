@@ -1,0 +1,15 @@
+
+<mat-sidenav-container class="h-screen">
+  <mat-sidenav mode="side" [(opened)]="state">
+    <app-side-nav></app-side-nav>
+  </mat-sidenav>
+  <mat-sidenav-content >
+    <div class="w-full" >
+      <button (click)="state=!state" class="rounded-full hover:bg-blueGray-200 p-1 m-4 w-8 h-8 transition" >
+        <mat-icon>menu</mat-icon>
+      </button>
+    </div>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+

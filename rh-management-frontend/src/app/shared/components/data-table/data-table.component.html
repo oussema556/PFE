@@ -1,0 +1,64 @@
+
+<table mat-table matSort [dataSource]="dataSource" class="w-full shadow-xl rounded-xl overflow-hidden" matSort aria-label="Elements">
+<!-- First Name Column -->
+    <ng-container *ngFor="let column of columns" [matColumnDef]="column">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>{{column}}</th>
+      <td mat-cell *matCellDef="let row" class="cursor-pointer">
+        <span *ngIf="column==='id'">{{row.id}}</span>
+        <span *ngIf="column==='firstName'">{{row.firstName}}</span>
+        <span *ngIf="column==='lastName'">{{row.lastName}}</span>
+        <span *ngIf="column==='email'">{{row.email}}</span>
+        <span *ngIf="column==='contractType'">{{row.contractType}}</span>
+        <span *ngIf="column==='currentSalary'">{{row.currentSalary}}</span>
+        <span *ngIf="column==='manager'">{{row.manager}}</span>
+
+        <span *ngIf="column==='action'">
+           <button [matMenuTriggerFor]="actionsMenu" class="rounded-full hover:bg-blueGray-100 w-8 h-8 flex items-center justify-center transition">
+          <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu class="" #actionsMenu>
+          <button
+            *ngIf="dataType==='employees'"
+            [routerLink]="['/employee/admin/viewProfile',row.id]"
+            class="block p-2 hover:bg-blueGray-100 w-full transition text-sm text-blueGray-700 flex items-center">
+            <mat-icon>last_page</mat-icon>
+            <span>
+              View profile
+            </span>
+          </button>
+          <button
+            *ngIf="dataType==='leaveTickets'"
+            class="block p-2 hover:bg-blueGray-100 w-full transition text-sm text-blueGray-700 flex items-center" [routerLink]="['/employee',row.id]">
+            <mat-icon>last_page</mat-icon>
+            <span>
+              View ticket
+            </span>
+          </button>
+          <button class="text-red-500 block p-2 hover:bg-red-100 w-full transition text-sm flex items-cente">
+            <mat-icon class="!w-4 !h-4">delete</mat-icon>
+            <span>
+              Delete
+            </span>
+          </button>
+        </mat-menu>
+        </span>
+      </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="columns"></tr>
+    <tr mat-row *matRowDef="let row; columns: columns;"></tr>
+  </table>
+
+  <div class="p-4 w-full flex items-center justify-end" *ngIf="!(meta==='no')">
+    <div class="flex space-x-4">
+      <p
+        *ngFor="let x of counter(meta?.totalPages) let i = index"
+        [ngClass]="{'selectedPage': i+1==meta?.currentPage}"
+        (click)="empWithPage(i+1)"
+        class="bg-blueGray-100 rounded-md w-8 h-8 flex items-center justify-center font-bold text-blueGray-900 shadow shadow-md cursor-pointer hover:bg-blueGray-200 transition">
+        {{i+1}}
+      </p>
+    </div>
+  </div>
+
+
+

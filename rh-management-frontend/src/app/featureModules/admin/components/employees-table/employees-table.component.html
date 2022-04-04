@@ -1,0 +1,14 @@
+<div class="p-24">
+  <app-search-bar
+    (searchEmployees)="searchEmployess($event)
+"></app-search-bar>
+  <app-data-table
+    *ngIf="data"
+    (getAllEmployees)="getAllEmployees($event)"
+    [dataType]="'employees'"
+    [columns]="columns"
+    [data]="data"
+    [meta]="meta">
+  </app-data-table>
+</div>
+

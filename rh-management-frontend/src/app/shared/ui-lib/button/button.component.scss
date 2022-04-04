@@ -1,0 +1,11 @@
+button{
+  @apply inline-flex justify-center p-3  rounded-md transition font-medium tracking-wider shadow-sm;
+}
+
+.smallBlueButtonOutline{
+  @apply bg-intuitivBlue-100 bg-opacity-30 text-intuitivBlue-500 hover:bg-intuitivBlue-100 border border-intuitivBlue-500
+}
+
+.smallBlueButtonFilled{
+  @apply text-sm text-white bg-intuitivBlue-500 hover:bg-intuitivBlue-600;
+}

@@ -1,0 +1,65 @@
+version: '3.7'
+
+services:
+  # NodeJs Connector
+  rh-management-backend:
+    build:
+      context: ./rh-management-backend
+    container_name: rh-management-backend
+    ports:
+      - "3000:3000"
+    working_dir: /var/www/backend
+    command: npm run start:dev
+    volumes:
+      - ./rh-management-backend:/var/www/backend
+      - /var/www/backend/node_modules
+    depends_on:
+      - database
+      - redis
+    networks:
+      - rh-management-network
+
+  # Redis for Queue management
+  redis:
+    image: redis:6.0-alpine
+    container_name: rh-management-redis
+    expose:
+      - 6379
+    networks:
+      - rh-management-network
+
+  database:
+    image: mysql:5.7
+    environment:
+      - MYSQL_ALLOW_EMPTY_PASSWORD=""
+      - MYSQL_DATABASE=db_rh_management
+    ports:
+      - "3306:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+    networks:
+      - rh-management-network
+
+  rh-management-frontend:
+    build:
+      context: ./rh-management-frontend
+    container_name: rh-management-frontend
+    ports:
+      - "4200:4200"
+    working_dir: /var/www/frontend
+    command: npm start
+    volumes:
+      - ./rh-management-frontend/:/var/www/frontend
+      - /var/www/frontend/node_modules
+    depends_on:
+      - rh-management-backend
+    networks:
+      - rh-management-network
+
+networks:
+  rh-management-network:
+    driver: bridge
+
+volumes:
+  db_data:
+    driver: local

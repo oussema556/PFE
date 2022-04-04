@@ -1,0 +1,36 @@
+.logo{
+  @apply w-80 h-auto p-12;
+}
+.nav{
+  @apply flex-1 space-y-4;
+  .sideBarLink{
+    @apply flex space-x-4 p-4 mx-4 text-intuitivBlue-100 hover:bg-intuitivBlue-100 hover:bg-opacity-30   rounded-full transition cursor-pointer;
+    .sideBarLinkName{
+      @apply flex-1
+    }
+
+    .notifNumber{
+      @apply flex items-center justify-center justify-self-end bg-intuitivOrange-500 p-1 rounded-full w-8 h-6 text-white;
+    }
+  }
+}
+
+
+.profile{
+  @apply flex items-center space-x-4 p-4;
+  .namePosition{
+    @apply flex-1;
+    h3{
+      @apply text-white font-medium;
+    }
+    p{
+      @apply text-sm text-blue-300
+    }
+  }
+
+}
+
+
+.padd{
+  @apply pl-0;
+}
